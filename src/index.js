@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import Axios from 'axios';
 import Home from './components/Home';
 import Posts from './components/Posts';
 import Login from './components/Login';
@@ -16,6 +17,9 @@ import {
 } from 'react-router-dom';
 
 const App = () => {
+
+  //helper function return true or false (localstorage.getItem if get something true if not false)
+
   return (
     <div id='App'>
       <Router>
@@ -42,6 +46,9 @@ const App = () => {
           </Route>
           <Route path="/Register">
             <Register />
+          </Route>
+          <Route exact path="/">
+            {loggedIn ? <Redirect to="/Posts" /> : <Posts />}
           </Route>
         </Switch>
       </main>

@@ -23,7 +23,7 @@ const Login = () => {
                 Password:
                 <input type="password" name="password" required minLength='8' onChange={ (event) => {setPassword(event.target.value)}}/>
                 </label>
-                <button type="submit" value="submit">Submit</button>
+                <input type="button" value="submit" onClick={register()} />
             </form>
 
 

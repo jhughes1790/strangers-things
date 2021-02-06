@@ -1,41 +1,34 @@
 import React from 'react';
-
+import { useState } from 'react';
 
 const Register = () => {
-  
     
+    const [userName, setUserName] = useState('');
+    const [password, setPassword] = useState('');
+
+    function register() { 
+        fetch('https://strangers-things.herokuapp.com/api/2010-LSU-RM-WEB-PT/users/register', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                user: {
+                    username: userName,
+                    password: password,
+                }
+            })
+            }).then(response => response.json())
+              .then(result => {
+                localStorage.setItem('token', result.data.token);
+                console.log(result);
+            }).catch(console.error);
+        }
 
     return (
         
         <div>
             <h1>Register Now!</h1>
-
-            <br></br>
-
-            <form>
-                <label>
-                First Name:
-                <input type="text" required onChange={ (event) => {setUserName(event.target.value)}}/>
-                </label>
-            </form>
-
-            <br></br>
-
-            <form>
-                <label>
-                Last Name:
-                <input type="text" required onChange={ (event) => {setUserName(event.target.value)}}/>
-                </label>
-            </form>
-
-            <br></br>
-            
-            <form>
-                <label>
-                Email:
-                <input type="text" name="email" required onChange={ (event) => {setUserName(event.target.value)}}/>
-                </label>
-            </form>
 
             <br></br>
 
@@ -53,16 +46,7 @@ const Register = () => {
                 Password:
                 <input type="password" name="password" required minLength='8' onChange={ (event) => {setPassword(event.target.value)}}/>
                 </label>
-            </form>
-
-            <br></br>
-
-            <form>
-                <label>
-                Confirm Password:
-                <input type="password" name="confirmPassword" required minLength='8' onChange={ (event) => {setPassword(event.target.value)}}/>
-                </label>
-                <button type="submit" value="submit">Submit</button>
+                <input type="button" value="submit" onClick={register()} />
             </form>
 
         </div>
