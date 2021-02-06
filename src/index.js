@@ -18,6 +18,16 @@ import {
 
 const App = () => {
 
+
+  function isLoggedIn() { 
+    if(localStorage.getItem('token')) {
+      return true;
+    }else {
+      return false;
+    }
+  }
+
+
   //helper function return true or false (localstorage.getItem if get something true if not false)
 
   return (
@@ -47,9 +57,9 @@ const App = () => {
           <Route path="/Register">
             <Register />
           </Route>
-          <Route exact path="/">
-            {loggedIn ? <Redirect to="/Posts" /> : <Posts />}
-          </Route>
+         <Route exact path="/">
+            {isLoggedIn() ? <Redirect to="/Posts" /> : <Login />}
+        </Route>
         </Switch>
       </main>
       </Router>
