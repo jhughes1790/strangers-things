@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 
 
 const Login = () => {
     
 
-  const [userName, setUserName] = useState('')
-  const [password, setPassword] = useState('')
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
     return (
         <div>
-            <h1>This is the login Page!</h1>
+            <h1>Please Login!</h1>
             <form>
                 <label>
                 Username:
-                <input type="text" name="username" onChange={ (event) => {setUserName(event.target.value)}}/>
+                <input type="text" name="username" required onChange={ (event) => {setUserName(event.target.value)}}/>
                 </label>
             </form>
             <br></br>
             <form>
                 <label>
                 Password:
-                <input type="password" name="password" onChange={ (event) => {setPassword(event.target.value)}}/>
+                <input type="password" name="password" required minLength='8' onChange={ (event) => {setPassword(event.target.value)}}/>
                 </label>
                 <button type="submit" value="submit">Submit</button>
             </form>
@@ -43,6 +45,7 @@ function apiRegister() {
   })
 }).then(response => response.json())
   .then(result => {
+    localStorage.setItem('token', result.data.token);
     console.log(result);
   })
   .catch(console.error);

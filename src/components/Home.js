@@ -1,11 +1,17 @@
 import React from 'react';
+import Login from './Login';
+import Register from './Register';
+
+
 
 const Home = () => {
     return (
-        //<h1>This is the Home Page</h1>
+        
         <div>
-            <h1>This is the login Page!</h1>
-           
+            <h1>Welcome!</h1>
+            <Login />
+            <h1>OR</h1>
+            <Register />
 
         </div>
     )
